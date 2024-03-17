@@ -1,0 +1,85 @@
+#Data Ingestion using phython
+# Data ingestion in python (segment) - flat file
+
+# import files
+ import snowflake.connector
+ import pandas as pd
+
+
+# connect to snowflake
+conn = snowflake.connector.connect(
+  user = '',
+  password = '',
+  account = '',
+  database = 'TEST_DB2',
+  schema = 'TEST_SCHEMA',
+)
+
+#specify the csv file path
+csv_file_path = r'C:\Users\Admin\Desktop\Snowflake\Segment.csv'
+
+#specify the table
+table_name = 'Segment'
+
+#read the records from csv file
+df = pd.read_csv(csv_file_path)
+
+#create a cursor obj
+cur = conn.cursor()
+
+#insert each row from df into the table
+for_, row in df.iterrows()
+placeholders = ', '.join(['%s'] + len(row))
+insert_query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+cur.execute(insert_query, tuple (row))
+
+#commit changes
+conn.commit()
+
+#close cursor and connection
+cur.close()
+conn.close()
+\\
+
+# Data ingestion in python (state) - flat file
+
+# import files
+import snowflake.connector
+import pandas as pd
+
+# connect to snowflake
+conn = snowflake.connector.connect(
+  user = '',
+  password = '',
+  account = '',
+  database = 'TEST_DB2',
+  schema = 'TEST_SCHEMA',
+)
+
+#specify the csv file path
+csv_file_path = r'C:\Users\Admin\Desktop\Snowflake\State.csv'
+
+#specify the table
+table_name = 'State'
+
+#read the records from csv file
+df = pd.read_csv(csv_file_path)
+
+#handle missing or invalid values in dataframe
+df.replace({np.nan: NULL}, inplace=True)
+
+#create a cursor obj
+cur = conn.cursor()
+
+#insert each row from df into the table
+for_, row in df.iterrows()
+placeholders = ', '.join(['%s'] + len(row))
+insert_query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+cur.execute(insert_query, tuple (row))
+
+#commit changes
+conn.commit()
+
+#close cursor and connection
+cur.close()
+conn.close()
