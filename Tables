@@ -1,0 +1,62 @@
+#Creating Tables
+---Customer_Master
+create table Customer (
+customer_id int NOT NULL PRIMARY KEY,
+customer_name varchar(300) NOT NULL,
+customer_address varchar (1000) NOT NULL,
+customer_pincode char (10) NOT NULL,
+customer_city_id smallint NOT NULL, 
+branch_id smallint NOT NULL,
+mobile_no varchar (25) NULL,
+customer_group_id int NULL,
+segment_id tinyint NULL,
+customer_type_id int NULL,
+cd_id int NULL,
+sez_flag char(5) NULL,
+bc_id int NULL,
+micro_segment_id int NULL,
+pan_no varchar (30) NULL,
+dci_flag varchar (5) NULL,
+gst_flag char (5) NULL,
+gst_number char (25) NULL,
+legal_name char (255) NULL,
+rtm_id tinyint NULL
+);
+
+
+---Segment and Micro segment
+create table Micro_segment (
+ micro_segment_id int,
+ sub_micro_segment_id int,
+ micro_segment_code varchar (7),
+ micro_segment_desc varchar (50),
+ status char (2)
+);
+
+segment:
+ create table Segment (
+ segment_id int,
+ segment_desc varchar (3),
+ remark varchar (23),
+ status char (2),
+ I_channel char (4)
+);
+
+---Country and State
+ create table State (
+ state_id int,
+ country_id int,
+ state_name varchar (45),
+ status char (2),
+ state_code int null,
+ tax_update char (2) null
+);
+
+country:
+create table Country (
+ country_id int primary key,
+ country_name varchar (25),
+ status char (2),
+ contry_code char (2) null
+ );
+
